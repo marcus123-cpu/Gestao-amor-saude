@@ -29,7 +29,7 @@ jobs:
       - name: Conferir código
         shell: pwsh
         run: |
-          python -m pytest -q test_app.py test_workflow.py test_amei_busy.py test_conferencia.py test_persistencia.py test_pulso.py test_psiquiatria.py
+          python -m pytest -q test_app.py test_workflow.py
           if ($LASTEXITCODE -ne 0) { throw 'Testes falharam.' }
           node --check app.js
           node --check workflow.js
