@@ -12,6 +12,8 @@ if (Test-Path -LiteralPath $stage) { Remove-Item -LiteralPath $stage -Recurse -F
 New-Item -ItemType Directory -Path $stage -Force | Out-Null
 
 if (-not (Test-Path 'node_modules\@playwright\cli\playwright-cli.js')) { npm ci; if ($LASTEXITCODE -ne 0) { throw 'npm ci falhou.' } }
+python -c "from zoneinfo import ZoneInfo; ZoneInfo('America/Sao_Paulo')"
+if ($LASTEXITCODE -ne 0) { throw 'Instale as dependências com python -m pip install -r installer/requirements-build.txt.' }
 python -m PyInstaller --noconfirm --clean --onedir --windowed --name AgendaClara --additional-hooks-dir installer\hooks --distpath build\pyinstaller-dist --workpath build\pyinstaller-work --specpath build app.py
 if ($LASTEXITCODE -ne 0) { throw 'PyInstaller falhou.' }
 Copy-Item -Path 'build\pyinstaller-dist\AgendaClara\*' -Destination $stage -Recurse -Force

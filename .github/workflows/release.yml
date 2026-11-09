@@ -22,7 +22,7 @@ jobs:
       - name: Preparar ferramentas
         shell: pwsh
         run: |
-          python -m pip install pyinstaller pytest
+          python -m pip install -r installer/requirements-build.txt
           npm ci
           choco install innosetup --yes --no-progress
           if ($LASTEXITCODE -ne 0) { throw 'Inno Setup não foi instalado.' }

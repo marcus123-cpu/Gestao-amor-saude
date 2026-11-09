@@ -8,7 +8,7 @@ Baixe o arquivo `AgendaClara-Setup-<versão>.exe` da [página de versões](https
 
 O banco, a sessão do navegador e outros dados locais ficam em `%LOCALAPPDATA%\AgendaClara\data`, separados da pasta do aplicativo. Atualizar ou reinstalar o programa preserva essa pasta. Em cada abertura, o atalho verifica a versão mais recente no GitHub, baixa o instalador e confere seu SHA-256 antes de atualizar. Sem internet, abre a versão já instalada. Para usar os dados deste computador em outro, faça uma cópia do banco `agendas.sqlite3` com o painel fechado; o login do Amei deve ser feito novamente na outra máquina.
 
-Para publicar uma atualização, envie as alterações para a branch `main` do repositório. A ação `Publicar instalador` testa, monta e publica um novo Release automaticamente. O código versionado não inclui `data/`, `node_modules/`, sessões de navegador nem pacotes gerados. Para montar localmente: `./installer/build-release.ps1` (requer Python, Node, Inno Setup 6 e os arquivos de navegador do Playwright). O instalador e o arquivo `.sha256` saem em `release/`.
+Para publicar uma atualização, envie as alterações para a branch `main` do repositório. A ação `Publicar instalador` testa, monta e publica um novo Release automaticamente. O código versionado não inclui `data/`, `node_modules/`, sessões de navegador nem pacotes gerados. Para montar localmente, instale Python, Node e Inno Setup 6, execute `python -m pip install -r installer/requirements-build.txt` e depois `./installer/build-release.ps1`. O instalador e o arquivo `.sha256` saem em `release/`.
 
 ## Iniciar
 
