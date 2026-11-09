@@ -1,0 +1,9 @@
+data/
+node_modules/
+.playwright-cli/
+__pycache__/
+*.pyc
+build/
+release/
+dist/
+*.spec
