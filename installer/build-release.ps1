@@ -55,6 +55,9 @@ $browserDest = Join-Path $stage 'browser'
 New-Item -ItemType Directory -Path $browserDest -Force | Out-Null
 Copy-Item -LiteralPath (Join-Path $browserSource 'chrome-win64') -Destination $browserDest -Recurse -Force
 
+python installer\smoke-test.py $stage
+if ($LASTEXITCODE -ne 0) { throw 'O executável empacotado não respondeu ao teste de abertura.' }
+
 $iscc = @("${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe", "$env:LOCALAPPDATA\Programs\Inno Setup 6\ISCC.exe") |
     Where-Object { Test-Path -LiteralPath $_ } | Select-Object -First 1
 if (-not $iscc) { throw 'Instale o Inno Setup 6 para gerar o instalador.' }

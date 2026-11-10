@@ -789,6 +789,13 @@ def sync_amei(row):
 
 class Handler(BaseHTTPRequestHandler):
     protocol_version = "HTTP/1.1"
+
+    def log_message(self, format, *args):
+        # PyInstaller --windowed deixa sys.stderr ausente. O logger padrão do
+        # BaseHTTPRequestHandler tenta escrever nele antes de enviar cada resposta.
+        if sys.stderr is not None:
+            super().log_message(format, *args)
+
     def send_json(self, status, obj):
         data = json.dumps(obj, ensure_ascii=False).encode("utf-8")
         # O estado completo passa de 150 KB de JSON; comprimido vai a uma fracao disso.
